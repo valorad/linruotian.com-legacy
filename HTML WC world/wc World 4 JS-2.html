@@ -1,0 +1,617 @@
+﻿<!doctype html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <title>WC HTML World JS-2</title>
+
+
+    <style type="text/css">
+
+        .btnWinClose {
+            float:right;
+        }
+
+        .imgGal {
+            height:256px;
+            width: 360px;
+        }
+        body {
+            background-color: #1b2838;
+        }
+
+		.spCTName {
+	font-size: 24px;
+	font-family: Impact, Haettenschweiler, "Franklin Gothic Bold", "Arial Black", sans-serif;
+		}
+
+        #divHeaderTitle {
+            text-align: center;
+            font-family: "微软雅黑";
+            font-style: normal;
+            font-weight: bolder;
+            font-size: xx-large;
+            color: white;
+            height:50px;
+            border:5px dashed red;
+        }
+
+        #divNavHolder {
+            text-align: center;
+            color: white;
+        }
+
+        aside {
+	float: right;
+	width: 50%;
+	height: 300px;
+	color: white;
+	clear: left;
+        }
+		
+		#divAsidePicBox {
+	text-align: center;
+	width: 100%;
+	height: 100%;
+	float: right;
+		}
+
+        section {
+	clear: none;
+	left: 8px;
+	top: 100px;
+	color: white;
+        }
+
+            section header {
+                text-align: center;
+                font-family: "Lucida Grande", "Lucida Sans Unicode", "Lucida Sans", "DejaVu Sans", Verdana, sans-serif;
+                font-style: normal;
+                font-weight: bolder;
+                font-size: 24px;
+                color: white;
+            }
+
+        main article {
+            text-align: center;
+            font-size: 18px;
+            color: white;
+        }
+
+
+        #divGallery {
+            position:absolute;
+            top:100px;
+            left:200px;
+            width:1000px;
+            height:500px;
+            border:2px solid red;
+            background-color:rgba(32, 44, 255, 0.81);
+            text-align:center;
+            display:none;
+        }
+
+        #divContainer {
+	position: absolute;
+	top: 90px;
+	left: 139px;
+	width: 1090px;
+	height: 500px;
+	border: 2px solid #0AFF00;
+	background-color: rgba(6,97,2,0.75);
+	text-align: center;
+	display: none;
+        }
+
+        #divContainer input[type=button] {
+	color: #0AFF00;
+	border-color: #0AFF00;
+	border-style: solid;
+	background-color: rgba(18,248,8,0.28);
+        }
+
+        #divContainer input[type=checkbox] {
+	color: #0AFF00;
+	border-color: #0AFF00;
+	border-style: solid;
+	background-color: rgba(18,248,8,0.28);
+        }
+		
+		.divCtBtnSec {
+			margin-top:10px;
+		}
+        footer {
+	/*	position: absolute;*/
+	width: 100%;
+	height: 25px;
+	left: 6px;
+	top: 1500px;
+	color: white;
+	text-align: center;
+	margin-top: 200px;
+        }
+		
+		.divNoteDisplay {
+			background-color:#8EDAE3;
+			border:solid 3px red;
+		}
+    #divCkbSec {
+	float: none;
+	clear: left;
+	width: 25%;
+}
+    </style>
+    <script type="text/javascript">
+        /*    Data Input    */
+        var galData = {
+            "0": ["pic/thumbnail/ACU-4.jpg", "蜜恋", "Two fathers on two sides", "pic/how_to_kiss_an_assassin_by_kejablank-d5dk96z.jpg"], "1": ["pic/thumbnail/fantasy_warrior.jpg", "战锤40K", "这是神马，我不知道", "pic/1923846.jpg"], "2": ["pic/thumbnail/kitty-6.jpg", "西风漂流", "超萌的一只小猫猫", "pic/1362723675714.jpg"], "3": ["pic/thumbnail/TES-Dragonborn_2.jpg", "抓根宝", "Fus Ro Dah!", "pic/105.jpg"], "4": ["pic/thumbnail/TES_Khajit1.jpg", "wc", "喵~", "pic/Khajit1.jpg"],
+        };
+
+        var bulData = { "双手战士": ["双手武器", "重甲", "铁匠", "箭术"], "战斗法师": ["附魔", "单手武器", "毁灭系", "恢复系"], "狩猎者": ["箭术", "轻甲"], "巫师": ["毁灭系", "召唤系", "附魔", "轻甲"], "圣骑士": ["重甲", "恢复系", "变幻系", "格挡", "单手武器"], "刺客": ["单手武器", "潜行", "轻甲", "箭术", "炼金"], "夜刃": ["单手武器", "幻术系", "毁灭系", "箭术", "潜行"], "盗贼": ["潜行", "开锁", "扒窃", "轻甲", "口才"], "龙裔": ["口才", "附魔", "双手武器", "恢复系"] };
+
+        var SQKeyword = "请输入关键字";
+
+        /*Functions Start*/
+        function sysOpenWin(Win) {
+            document.getElementById(Win).style.display = "block";
+        }
+
+        function sysCloseWin(object) {
+            object.style.display = "none";
+        }
+
+        function sysInitEvent() {
+            /*JavaScript版本评分功能初始化*/
+            var TableRating = document.getElementById("tbRating");
+            var RateTDs = TableRating.getElementsByTagName("td"); //只要评论区的td，其他不处理
+
+            for (var i = 0; i < RateTDs.length; i++) {
+                var RateTD = RateTDs[i];
+                RateTD.onmouseover = rateTDMouseover;
+                RateTD.style.cursor = "pointer";
+            }
+
+            /*JavaScript版本注释演示初始化*/
+            var divimg = document.getElementById("divMainImageSec");
+            var imgs = divimg.getElementsByTagName("img");
+
+            for (var i = 0; i < imgs.length; i++) {
+                var img = imgs[i];
+                img.onmouseenter = noteMouseEnter;
+                img.onmouseout = noteMouseOut;
+            }
+
+            /*山寨搜索框初始化*/
+            var searchbar = document.getElementById("txtSearch");
+            searchbar.value = SQKeyword;
+            searchbar.style.color = "Gray";
+            searchbar.onfocus = function () {
+                var existword = document.getElementById("txtSearch").value;
+                if (existword == SQKeyword) {
+                    document.getElementById("txtSearch").value = "";
+                    searchbar.style.color = "Black";
+                }
+            };
+            searchbar.onblur = function () {
+                var existword = document.getElementById("txtSearch").value;
+                if (existword == "") {
+                    document.getElementById("txtSearch").value = SQKeyword;
+                    searchbar.style.color = "Gray";
+                }
+            };
+            
+            /*电子邮箱验证示例初始化*/
+            var entry = 0;
+            var RegEx = /^([0-9A-Za-z\-_\.]+)@([0-9a-z]+\.[a-z]{2,3}(\.[a-z]{2})?)$/g;
+            var txtEmail = document.getElementById("txtEMCheck");
+            txtEmail.onfocus = function () {
+                entry = 1;
+            }
+            txtEmail.onblur = function () {
+                if (entry == 1){
+                    if (RegEx.test(txtEmail.value)) {
+                        var EFilter = /(.+)@(.+)/;
+                        txtEmail.value.match(EFilter);
+                        alert("EmailName = " + RegExp.$1 + "  EmailType = " + RegExp.$2);
+
+                    }
+                    else {
+                        alert("Something went wrong in your Email");
+                    }
+                }
+            }
+
+            /*动态下拉选择框示例初始化*/
+            bulLoadBuild();
+            document.getElementById("sltBuild").onchange = bulLoadSkill;
+            
+            
+        }
+
+        /*JavaScript版本的评分功能*/
+        function rateGetIndex(arr, element) {
+            for (var i = 0; i < arr.length; i++) {
+                if (arr[i] == element) {
+                    return i;
+                }
+            }
+        }
+
+        function rateTDMouseover() {
+            var TableRating = document.getElementById("tbRating");
+            var RateTDs = TableRating.getElementsByTagName("td");//只要评论区的td，其他不处理
+            var index = rateGetIndex(RateTDs, this);
+
+            for (var i = 0; i <= index; i++) {
+                var RateTD = RateTDs[i];
+                RateTD.innerHTML = "★";
+            }
+            for (var i = index + 1; i < RateTDs.length; i++) {
+                var RateTD2 = RateTDs[i];
+                RateTD2.innerHTML = "☆"
+            }
+        }
+
+        /*评分功能结束*/
+
+        /*JavaScript版本动态注释层演示*/
+        function noteMouseEnter() {
+            var divimg = document.getElementById("divMainImageSec")
+            var divNote = document.createElement("div");
+            divNote.className = "divNoteDisplay";
+            divNote.style.position = "absolute"; //设置成绝对定位才可以乱动
+            divNote.style.left = window.event.clientX;
+            divNote.style.top = window.event.clientY;
+            divNote.innerHTML = "<font color = green>小白直膝箭</font>的头像";
+
+            divimg.appendChild(divNote)
+            //document.body.appendChild(divNote);
+
+        }
+
+        function noteMouseOut() {
+            var divImg = document.getElementById("divMainImageSec");
+            var divNotes = divImg.getElementsByTagName("div");
+            //alert(divNotes.length);
+
+            for (var i = 0; i < divNotes.length; i++) {
+                var divNote = divNotes[i];
+                //alert(divNote.className);
+                if (divNote.className == "divNoteDisplay") {
+                    divImg.removeChild(divNote);
+                }
+            }
+        }
+        /*动态注释层演示功能结束*/
+
+        function test1() {
+            document.write("HEllo man");
+
+        }
+
+        function test2() {
+            alert(event.clientX);
+        }
+
+        function sysToggleDiv(CKB) {
+            var div = document.getElementById("divAsidePicBox");
+            if (CKB.checked) {
+                div.style.display = ""//没有值就是显示
+            }
+            else {
+                div.style.display = "none"//none就是不显示
+            }
+        }
+
+        function hdIncreaseHeight() {
+            //alert(document.getElementById("divHeaderTitle").style.width);
+            var div1 = document.getElementById("divHeaderTitle");
+            var hdHeight = getComputedStyle(div1, null).height;
+            Height0 = parseInt(hdHeight, 10);
+            Height0 += 50;
+            var Height1 = Height0 + "px";
+            document.getElementById("divHeaderTitle").style.height=Height1;
+          //  getComputedStyle(divHeaderTitle, null).height = Height1;
+        }
+
+        function GalLoadData() {
+            for (var num in galData) {
+                var thumbnail = document.createElement("img");
+                thumbnail.setAttribute("src", galData[num][0]);
+                thumbnail.setAttribute("wcTitle", galData[num][1]);
+                thumbnail.setAttribute("wcDesc", galData[num][2]);
+                thumbnail.setAttribute("wcFullImg", galData[num][3])
+                thumbnail.setAttribute("width", "128px");
+                thumbnail.setAttribute("height", "128px");
+
+                thumbnail.onmouseenter = function () {
+                    var newdiv = document.createElement("div");
+                    //给动态div指定样式
+                    newdiv.style.zIndex = 10;
+                    newdiv.className = "divGalDetail"
+                    newdiv.style.position = "absolute";
+                    newdiv.style.top = (event.clientY + 5) + "px";
+                    newdiv.style.left = (event.clientX + 5) + "px";
+                    newdiv.style.height = "400px";
+                    newdiv.style.width = "400px";
+                    newdiv.style.borderStyle = "solid"
+                    newdiv.style.borderColor = "red";
+                    newdiv.style.borderWidth = "5px";
+                    newdiv.style.backgroundColor = "rgba(0, 232, 255, 0.76);"
+                    //挂载
+                    newdiv.innerHTML = "<img class='imgGal' src=' " + this.getAttribute("wcFullImg") + " ' />" + "<br />" + "<h4>" + this.getAttribute("wctitle") + "</h4>" + this.getAttribute("wcdesc");
+                    document.body.appendChild(newdiv);
+                };
+                thumbnail.onmouseleave = function () {
+                    var alldivs = document.getElementsByTagName("div");
+                    for (var i = 0; i < alldivs.length; i++) {
+                        var tgdiv = alldivs[i];
+                        if (tgdiv.className == "divGalDetail") {
+                            document.body.removeChild(tgdiv);
+                        }
+                    }
+                };
+                document.getElementById("divGallery").appendChild(thumbnail);
+            }
+        }
+
+        /*动态下拉选择框示例*/
+        function bulLoadBuild() {
+            
+            var bulsel = document.getElementById("sltBuild");
+            for (var build in bulData) {
+                var newOpt = document.createElement("Option");
+                newOpt.value = build;
+                newOpt.innerHTML = build;
+                bulsel.appendChild(newOpt);
+            }
+        }
+
+        function bulLoadSkill() {
+            var build = document.getElementById("sltBuild");
+            var sltskill = document.getElementById("sltSkill");
+            /*清除旧数据*/
+            //提示：sltskill.options.length = 0; 也可以达到清除效果。
+            //注意：必！须！从后往前删。如果从前往后删，因为暂时没有删掉的项会向前补位，造成“漏网之鱼”bug。还会Bong~
+            for (var i = sltskill.length - 1; i >= 0; i--) {
+                sltskill.removeChild(sltskill.childNodes[i]);
+            }
+
+            if (build.value == "default") {
+                var newOpt = document.createElement("Option");                
+                newOpt.value = "default";
+                newOpt.innerHTML = "请选择技能";
+                sltskill.appendChild(newOpt);
+            }
+            else {
+                /*取得技能数据（是个数组）*/
+                var skills = bulData[build.value];
+                for (var i = 0; i < skills.length; i++) {
+                    var newOpt = document.createElement("Option");
+                    newOpt.value = skills[i];
+                    newOpt.innerHTML = skills[i];
+                    sltskill.appendChild(newOpt);
+                }
+            }
+
+        }
+
+        function contSltAll(Inv) {
+            var Inventory = document.getElementById(Inv);
+            var items = Inventory.getElementsByTagName("input");
+            for (var i = 0; i < items.length; i++) {
+                var item = items[i];
+                if (item.type == "checkbox") {
+                    item.checked = "checked";
+                }
+            }
+        }
+
+        function contUnsltAll(Inv) {
+            var Inventory = document.getElementById(Inv);
+            var items = Inventory.getElementsByTagName("input");
+            for (var i = 0; i < items.length; i++) {
+                var item = items[i];
+                if (item.type == "checkbox") {
+                    item.checked = "";
+                }
+            }
+        }
+
+        function contRevSlt(Inv) {
+            var Inventory = document.getElementById(Inv);
+            var items = Inventory.getElementsByTagName("input");
+            for (var i = 0; i < items.length; i++) {
+                var item = items[i];
+                //更简单的写法：item.checked = !item.checked;
+                if (item.type == "checkbox") {
+                    if (item.checked) { //item.checked返回的是Boolean值
+                        item.checked = "";
+                    }
+                    else {
+                        item.checked = "checked";
+                    }
+                    
+                }
+            }
+        }
+
+        function contGiveItem(src, tgt, isGiveAll) { //src: 原物品栏table, tgt: 目标物品栏table, isGiveAll: 是否为全给状态
+            var srcinv = document.getElementById(src);
+            var tgtinv = document.getElementById(tgt);
+
+            var srcitems = srcinv.getElementsByTagName("input");
+            var tgtitems = tgtinv.getElementsByTagName("input");
+
+            var originLength = srcitems.length;
+            for (var i = originLength - 1; i >= 0; i--) {
+                var srcitem = srcitems[i];
+                if (srcitem.checked || isGiveAll) {
+                    var DLabels = srcitem.parentNode.getElementsByTagName("label");
+                    var Dlabel = DLabels[0].innerHTML;
+
+                    /*目标物品栏新增选中物品*/
+                    var Nlabel = document.createElement("label");
+                    Nlabel.innerHTML = Dlabel;
+                    var Nckb = document.createElement("input");
+                    Nckb.type = "checkbox";
+                    Nckb.name = srcitem.name;
+                    var Ntd = document.createElement("td");
+                    Ntd.appendChild(Nckb);
+                    Ntd.appendChild(Nlabel);
+                    var Ntr = document.createElement("tr");
+                    Ntr.appendChild(Ntd);
+                    var tgtTBody = tgtinv.getElementsByTagName("tbody");
+                    tgtTBody[0].appendChild(Ntr);
+                    /*移除源物品栏的选中物品*/
+                    var Dtr = srcitem.parentNode.parentNode;
+                    Dtr.parentNode.removeChild(Dtr);
+                }
+            }
+        }
+        /*Functions End*/
+
+    </script>  
+</head>
+<body onload="sysInitEvent()">
+	<header>
+   	  <div id="divHeaderTitle">WC HTML World JS-2</div>
+    </header>
+    
+    <nav>
+   	  <div id="divNavHolder">
+        	<input type="button" id="btnGo1" value="前往wc World 3" onclick="location.href('wc World 3.html')"/>
+             <input type="button" id="btnGo2" value="前往wc World 5 JQ" onclick="location.href('wc World 5 JQ')"/>
+        </div>
+    </nav>
+    
+
+
+    <main>
+    <div>
+      <section>
+            <header>wc Wrold 4 JS-2 Testing Area</header>
+            <article>Main-Section-article</article>
+      </section> 
+      <article>
+        Welcome to WC HTML World JS-2!
+        </article> 
+     
+     
+      <aside>
+      <div style="float:right">
+          <!-- 不用placeholder，模仿的搜索框 -->
+      	<input type="text" size="60" maxlength="50" id="txtSearch"  />
+        <input type="button" value="Search" />
+      </div>
+                <div id=divAsidePicBox>
+                    <img src="pic/FC_sabertooth_hunt.jpg" width="300" height="300"/>
+                </div>
+      </aside>
+      </div>
+      
+        <div id="divCkbSec">
+          <input type="checkbox" id="ckbToggleDiv" checked onClick="sysToggleDiv(this)"/>
+          <label for="ckbToggleDiv">切换div</label>
+        </div>
+        <div id="divRatingSec">
+        	<table id="tbRating">
+                <tbody>
+                    <tr>
+                        <td>☆</td>
+                        <td>☆</td>
+                        <td>☆</td>
+                        <td>☆</td>
+                        <td>☆</td>
+                    </tr>
+                    
+                </tbody>
+            </table>
+        </div>
+        <div id="divMainButtonSec">
+            <input type="button" value="增加标题长度" onclick="hdIncreaseHeight()" />
+            <input type="button" value="显示图片集" onclick="sysOpenWin('divGallery')" />
+          <input type="button" value="打开箱子" onclick="sysOpenWin('divContainer')" />
+        </div>
+        <div id="divMainImageSec">
+       	  <img src="pic/fallout-VaultBoy-Christmas.png" width="64" height="64" title="动态层注释演示" />
+        </div>
+        <div id="divGallery" class="divWindow">
+            <div>
+                <input type="button" class="btnWinClose" value="X" onclick="sysCloseWin(this.parentNode.parentNode)" />
+                <input type="button" value="加载" onclick="GalLoadData(); this.style.display = 'none'" />
+            </div>
+        </div>
+        <div id="divContainer">
+        	<div style="width:100%; height:25px">
+                <input type="button" class="btnWinClose" value="X" onclick="sysCloseWin(this.parentNode.parentNode)" />
+            </div>
+
+            <div style="width: 43%; float: left; height: 400px; border-color: #0AFF00; border-style: solid; color: #0AFF00; text-align: center;">
+            <div><span class="spCTName">Steve</span></div>
+            <div id="divSteveInv" style="text-align:left">
+                <table id="tbSteveInv">
+                    <tr><td><input type="checkbox" name="Scrap Metal"/> <label>废金属</label></td></tr>
+                    <tr><td><input type="checkbox" name="BB Gun"/> <label>BB 枪</label></td></tr>
+                    <tr><td><input type="checkbox" name="T-60b Power Armor"/> <label>T-60b 动力甲</label></td></tr>
+                </table>            
+            </div>
+
+            </div>
+            <div style="width: 8%; height: 30%; float: left; margin-left: 20px; margin-right: 21px; margin-top: 90px; border-color: #0AFF00; border-style: solid; text-align: center; margin-bottom: 162px;">
+            	<div class="divCtBtnSec">
+                	<input type="button" value=">>" onclick="contGiveItem('tbSteveInv', 'tbBillyInv', true)"  />
+                </div>
+				<div class="divCtBtnSec">
+                	<input type="button" value=">" onclick="contGiveItem('tbSteveInv', 'tbBillyInv', false)" />
+                </div>
+				<div class="divCtBtnSec">
+                	<input type="button" value="<" onclick="contGiveItem('tbBillyInv', 'tbSteveInv', false)" />
+                </div>
+				<div class="divCtBtnSec">
+                	<input type="button" value="<<" onclick="contGiveItem('tbBillyInv', 'tbSteveInv', true)" />
+                </div>
+            	
+            </div>
+            <div style="width: 43%; height: 400px; float: right; border: medium solid #0AFF00; color: #0AFF00;">
+                <div><span class="spCTName">Billy</span></div>
+                <div id="divBillyInv" style="text-align:left">
+                    <table id="tbBillyInv">
+                        <tr><td><input type="checkbox" name="Purified Water"/> <label>纯净水</label></td></tr>
+                        <tr><td><input type="checkbox" name="Stimpack"/> <label>治疗针</label></td></tr>
+                        <tr><td><input type="checkbox" name="RadAway"/> <label>辐特宁</label></td></tr>
+                    </table>            
+                </div>
+
+            </div>
+			<div style="float: left; clear: left; width: 44%;">
+            	<input type="button" value="全选" onclick="contSltAll('divSteveInv')" />
+                <input type="button" value="不选" onclick="contUnsltAll('divSteveInv')" />
+                <input type="button" value="反选" onclick="contRevSlt('divSteveInv')" />
+            </div>            
+			<div style="float: right; clear: right; width: 44%;">
+            	<input type="button" value="全选" onclick="contSltAll('divBillyInv')" />
+                <input type="button" value="不选" onclick="contUnsltAll('divBillyInv')" />
+                <input type="button" value="反选" onclick="contRevSlt('divBillyInv')" />                
+            </div>
+        </div>        
+        <div>
+            <input type="text" id="txtEMCheck" placeholder="电子邮箱检验示例" maxlength="50" size="20" style="ime-mode:disabled"/>
+      </div>
+        <div>
+            <p>动态下拉选择框示例</p>
+        	<select id="sltBuild">
+            	<option value="default">请选择流派</option>
+            </select>
+            <select id="sltSkill">
+            	<option value="default">请选择技能</option>
+            </select>
+        </div>
+    </main>
+    
+    <footer>
+		<span>All Rights Reserved WC, wcxaaa</span>
+        <input type="button" value="1" onclick="test1()" />
+        <input type="button" value="2" onclick="test2()"/>
+    </footer>
+</body>
+</html>

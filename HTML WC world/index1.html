@@ -1,0 +1,1151 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>wc World 5 JQ</title>
+<link rel="stylesheet" href="css/jquery-ui.css" type="text/css" />
+<style type="text/css">
+
+.bodyDefault {
+	background-color: #00B8BB;	
+    color:white;
+}
+
+.bodyGray{
+    filter:Gray;
+}
+
+.bodyGreen{
+    filter:Green;
+}
+
+.bodyRed{
+    filter:Red;
+}
+
+header {
+	height: 60px;
+	background-color: #008907;
+    color:white;
+    text-align:center;
+}
+
+nav {
+	height: 30px;
+	text-align: center;
+ }
+ 
+main {
+	width:100%;
+	height:700px;
+}
+
+aside {
+	float: left;
+	width: 38%;
+	height: 700px;
+	background-color: #008907;
+    text-align:center;
+}
+
+article {
+	float: right;
+	width: 61%;
+	height: 700px;
+	background-color: #008907;
+    text-align:center;
+}
+
+footer {
+	text-align: center;
+}
+
+#divWishListHolder td {
+      border-style:solid;
+      border-width:1px; 
+      border-color:rgba(104, 157, 221, 0.6)
+}
+
+.btnWinClose {
+    float:right;
+}
+		
+
+.spCTName {
+	font-size: 24px;
+	font-family: Impact, Haettenschweiler, "Franklin Gothic Bold", "Arial Black", sans-serif;
+}
+
+.divCtBtnSec {
+	margin-top:10px;
+}
+
+.tdWLSel {
+    background-color:red;
+}
+		
+#divContainer {
+	position: absolute;
+	top: 90px;
+	left: 139px;
+	width: 1090px;
+	height: 530px;
+	border: 2px solid #0AFF00;
+	background-color: rgba(6,97,2,0.75);
+	text-align: center;
+	display: none;
+}
+
+#divContainer input[type=button] {
+	color: #0AFF00;
+	border-color: #0AFF00;
+	border-style: solid;
+	background-color: rgba(18,248,8,0.28);
+}
+
+#divContainer input[type=checkbox] {
+	color: #0AFF00;
+	border-color: #0AFF00;
+	border-style: solid;
+	background-color: rgba(18,248,8,0.28);
+}
+
+#divGallery {
+	position: absolute;
+	top: 102px;
+	left: 190px;
+	width: 1000px;
+	height: 500px;
+	border: 2px solid rgba(255,255,255,1.00);
+	text-align: center;
+    display:none;
+	background-color: rgba(87,87,87,0.74);
+}
+
+.divGalDetail {
+    position:absolute;
+    z-index:20;
+    text-align:center;
+}
+
+.divToolTip {
+    position:absolute;
+    border-style:solid;
+    border-width:3px;
+    border-color:aquamarine;
+    text-align:center;
+    z-index:10;
+    background-color:rgba(87,87,87,0.74);
+}
+
+#divFriendsPanel{
+	position: absolute;
+	top: 7px;
+	left: 165px;
+	width: 285px;
+	height: 795px;
+	border: 2px solid rgba(26,255,0,1.00);
+	text-align: center;
+	display:none;
+	background-color: rgba(0,119,163,0.89);
+}
+
+#divFLFriendList{
+	height: 100%;
+	width: 95%;
+	float: right;
+	border-width: 5px;
+}
+
+#divFLFriendList ul{
+	list-style-type:none;
+}
+
+#divFLFriendList input[type=button]{
+	background-color: rgba(35,211,0,1.00);
+	color: rgba(255,255,255,1.00);
+	font-size: medium;
+	font-weight: 900;
+	margin-top: 4px;
+	border: 1px solid rgba(35,211,0,1.00);
+	width: 20px;
+	height: 20px;
+}
+
+.divFLFriend {
+	width: 100%;
+	height: 83px;
+	clear: both;
+}
+
+.divFLFriendAvt {
+	text-align: center;
+	width: 68px;
+	height: 68px;
+	margin-left: 5px;
+	float: left;
+	margin-top: 5px;
+}
+.divFriendInfoBox {
+	width: 117px;
+	height: 66px;
+	float: right;
+	margin-top: 5px;
+	margin-right: 5px;
+}
+
+.divFriendInfo {
+	width:100%; 
+	height:33%;	
+}
+
+.spFLGroupName {
+	color: rgba(44,225,0,1.00);
+	font-size: large;
+	font-weight: bolder;
+	font-family: "微软雅黑";
+}
+
+.divGroupTitle {
+	border: 3px solid rgba(35,211,0,1.00);
+	margin-right: 8px;
+}
+
+#divLoginBox {
+	position: absolute;
+	top: 103px;
+	left: 447px;
+	width: 450px;
+	height: 312px;
+	border: 2px solid rgba(255,255,255,1.00);
+	text-align: center;
+	display:none;
+	background-color: rgba(87,87,87,0.74);
+}
+
+.divLoginTextBox {
+	margin-top: 10px;	
+}
+
+.divLoginTextBox input[type=text]{
+	margin-top: 10px;
+	width: 219px;
+	height: 26px;
+	margin-bottom: 10px;
+}
+
+.divLoginTextBox input[type=password]{
+	margin-top: 10px;
+	width: 219px;
+	height: 26px;
+	margin-bottom: 10px;
+}
+
+#divLoginBox {
+	z-index:60
+}
+
+.divLoginBtnHolder input[type=button] {
+	margin-top: 10px;
+	width: 219px;
+	height: 26px;
+	margin-bottom: 10px;
+}
+
+#divModelBG {
+	position: absolute;
+	width: 100%;
+	height: 1000px;
+	background-color: rgba(98,98,98,0.50);
+	left: 0px;
+	top: 0px;
+	z-index: 50;
+	display:none;
+}
+
+.divModelWindow {
+	z-index: 100;
+	position: absolute;
+	height: 146px;
+	width: 548px;
+	background-color: rgba(0,199,146,0.61);
+	left: 381px;
+	top: 163px;
+	border: 3px solid rgba(0,62,2,0.84);
+	display:none;
+}
+
+.divMWText {
+	clear: both; 
+	text-align: center;
+	color: rgba(0,64,126,1.00);
+	font-family: '微软雅黑'; 
+	font-weight: 600;
+	font-size: xx-large;	
+}
+</style>
+
+<script type="text/javascript" src="js/jquery-2.2.0.js"></script>
+<script src="js/carhartl-jquery-cookie-92b7715/jquery.cookie.js"></script>
+<script src="js/jquery-ui.js"></script>
+
+<script type="text/javascript">
+    /*    Data Input    */
+    var galData = {
+        "0": ["pic/thumbnail/ACU-4.jpg", "蜜恋", "Two fathers on two sides", "pic/how_to_kiss_an_assassin_by_kejablank-d5dk96z.jpg", "1004", "796"], "1": ["pic/thumbnail/fantasy_warrior.jpg", "战锤40K", "这是神马，我不知道", "pic/1923846.jpg", "1920", "1200"], "2": ["pic/thumbnail/kitty-6.jpg", "西风漂流", "超萌的一只小猫猫", "pic/1362723675714.jpg", "1280", "1024"], "3": ["pic/thumbnail/TES-Dragonborn_2.jpg", "抓根宝", "Fus Ro Dah!", "pic/105.jpg", "1920", "1200"], "4": ["pic/thumbnail/TES_Khajit1.jpg", "wc", "喵~", "pic/Khajit1.jpg", "1280", "720"],
+        };
+		
+    /* ready演示 */
+    /*
+    $(document).ready(function () {
+        alert("Welcome to wc HTML world 5 JQuery!")
+    });
+    */
+
+    //$是个名字很怪的函数。对的，是个函数！
+    //JQuery 的ready可以在一个对象上重复注册事件，dom操作的onload不可以，因为js中没有+=这种委托组合。
+    //bind就是+=，unbind就是-=
+    //触发时间： ready < onload . ready:DOM元素创建完就触发。 onload: DOM元素加载完才触发（要等图片、css这些加载完）。
+    //Jquery 实现等DOM元素加载完才触发，可以考虑 $(window).load();
+
+    /* $.map 和 $.each的演示 */
+    /*  -----$.map ------ */
+
+    /*
+    var arr = [45, 96, 145];
+    var arr2 = $.map(arr, function (item) {
+        return item * 2;
+        
+    })
+
+    // $.map 有返回值（数组）， 一般处理Array风格的数组，一般不处理Dictionary风格的数组。
+    // 对于Array风格的数组，Key是数组中的数对应的序号（0, 1, 2, 3, ...）， Value是数组中数的值（45, 96, 145, ...）
+
+    alert(arr2.toString());
+    */
+    /* -----$.each ------*/
+
+    /*
+    var dict = { "Red": 120, "Green": "108", "Blue": "32" };
+    $.each(dict, function (key, value) {
+        alert(key + "的值是" + value);
+    })
+    */
+
+    // $.each 一般不用返回值。一般处理Dictionary风格数组更方便。 比手写for循环方便的多。
+    // 如果写成$.each(dict, function (item){ alert(item);})，结果是得到了dict的Key（Red, Green, Blue）。
+    // 如果写成$.each(dict, function (){ alert(this);})，得到的是dict的Value（120, 108, 32）。“this”指的就是当前元素的值。
+
+    //Array是JavaScript语言本身的对象，不是DOM对象，因此使用时不需要拿$转换成JQuery对象。
+    //已经被转换成jquery对象的对象，可以转回Dom对象。用 var objDom = objJQ[0];即可。
+
+    /* JQuery方法取 inner html */
+
+    /*
+    $(function () {
+        alert($("#pHeader").html());
+
+    })
+    */
+
+    //html()方法，无参数就是取值，有参数就是赋值。text()也是，val()也是，css()也是。
+
+    /* JQuery选择器 */
+    // JQuery选择器里的空格不！要！随便加，随便删。
+    // $(".testClass") ：前面带“.”的是css选择器。选中的是同一ClassName的对象。
+    // $("p") ：既没有“#”又没有“.”的是标签选择器，相当于getElementsByTagName("p")
+    // $("p,div,span.testClass") ：多条件选择器。条件是或。所有的p标签、div和testClass类的span标签全部都会被选出来。
+    // $("div li")：获取div下所有的li元素，包括子代、子子代、……
+    // $("div > li")：获取div下的第一层的li，不包括子代。
+
+    // $("input[name=testName]")：属性选择器 选择所有name属性值是testName的input。
+    // $("#ul", $(this)) ：相对选择器。第二个参数传递一个JQuery对象，则相对于这个对象为基准进行相对的选择。效果就是把这个div下的ul全部选中了。
+    // $("body *")：选择body下的所有控件
+    
+
+    /* 按钮绑定事件演示 */
+    $(function () {
+        $("#btn1").click(function () {
+            alert("点击成功，你继续点啊！");
+        });
+    });
+    //特别小心 #btn1 不可以写错。JQuery是不会报错的！
+    //检验id是否存在可以这么写：
+    function sysCheckObjID() {
+        var id = prompt("Input ID", "#btn1");
+        if ($(id).length <= 0) {
+            alert("不存在这样的" + id);
+        }
+        else {
+            alert("恭喜您成功创建了这样的" + id);
+        }
+    }
+    
+    /*   JQuery版的评分控件   */
+    //JQuery 特点：链式编程。可以一直点（“.”）下去
+    $(function () {
+        $("#tbRating td").mouseover(function () {
+            $("#tbRating td").css("cursor", "pointer");
+            $("#tbRating td").html("★");
+            $(this).nextAll("#tbRating td").html("☆");
+        });
+    });
+
+    /* JQuery过滤器 */
+    // $("div:first") 选取第一个div
+    // $("div:last") 选取最后一个div
+    // $("input:not(.TestClass)") 选取样式名不是TestClass的所有input
+    // $("input:even") 选取索引号是奇数的input。（用来做隔行变色等）
+    // $("input:odd") 选取索引号是偶数的input。（用来做隔行变色等）
+    // $("input:eq(5)") 选取索引号等于5的input
+    // $("input:gt(8)") 选取索引号大于8的input
+    // $("input:lt(3)") 选取索引号小于3的input
+
+
+
+
+    /*  wc的愿望单  */
+    $(function () {
+        $("#tbWishList tr:first").css("fontSize", "20").css("fontWeight", "600");
+        $("#tbWishList td:last").css("color", "red").css("fontWeight", "bolder");
+        $("#tbWishList tr:gt(0):lt(3)").css("fontSize", "18").css("fontWeight", "400"); //注意：1.gt() lt()不包括等于 2.第一行序号为0 3.gt(0):lt(3)先选了大于0的（即12345……），再！选！的小于3的（即123）。lt(3)的3已经是gt(0)后新的数据集里重新编号选的，也就是原来的第二三四五行里面重新编号选的。
+        $("#tbWishList tr:gt(0):even:not(.trWLLast)").css("background", "#00DB0B");
+        $("#tbWishList tr:gt(0):odd:not(.trWLLast)").css("background", "#00E8A3");
+    });
+
+    $(function () {
+        $("#tbWishList tr").click(function () {
+            $("td", $(this)).css("background", "blue");
+        });
+    });
+
+    /*链式Each演示- 节操碧出品*/
+    $(function () {
+        $("#divGameSel input[name=ckGameSel]").click(function () {
+            GSckSync();
+            GSckNoResult();
+        });
+    });
+
+    function GSckNoResult() {
+        if ($("#divGameSel input[name=ckGameSel]:checked").length <= 0) {
+            $("#spGameSelRes").html("还没选");
+        }
+    }
+
+    function GSckSync() {
+        var sel = new Array();
+        $("#divGameSel input[name=ckGameSel]:checked").each(function (key, value) {
+            sel[key] = $(value).val();
+            $("#spGameSelRes").html(sel.join(","));
+
+        });
+    }
+
+    /*动态操作DOM - 辐射箱子*/
+
+    /*   打开箱子   */
+    $(function () {
+        $("#btnOpenFOCont").click(function () {
+            $("#divContainer").toggle("slow");
+        });
+    });
+
+    //关闭按钮    
+    $(function () {
+        $(".btnWinClose").click(function () {
+            $(this).parent().parent().hide("slow");
+        });
+    });
+
+    //给予物品
+    $(function () {
+        $("#btnCtS2BAll").bind("click", function () { ctGiveItem("#tbSteveInv", "#tbBillyInv", true) });
+        $("#btnCtS2B").bind("click", function () { ctGiveItem("#tbSteveInv", "#tbBillyInv", false) });
+        $("#btnCtB2S").bind("click", function () { ctGiveItem("#tbBillyInv", "#tbSteveInv", false) });
+        $("#btnCtB2SAll").bind("click", function () { ctGiveItem("#tbBillyInv", "#tbSteveInv", true) });
+    });
+
+    function ctGiveItem(src, tgt, isGiveAll) {
+        if (isGiveAll) {
+            var item = $(src + " input[type=checkbox]").parent().parent().remove();
+            $(tgt).append(item);
+        }
+        else {
+            var item = $(src + " input[type=checkbox]:checked").parent().parent().remove();
+            $(tgt).append(item);
+        }
+    }
+
+    //全选、不选和反选
+    $(function () {
+        $("#btnCtSSAll").bind("click", function () { ctSelAll("#tbSteveInv") });
+        $("#btnCtSBAll").bind("click", function () { ctSelAll("#tbBillyInv") });
+        $("#btnCtSSNone").bind("click", function () { ctSelNone("#tbSteveInv") });
+        $("#btnCtSBNone").bind("click", function () { ctSelNone("#tbBillyInv") });
+        $("#btnCtSSRev").bind("click", function () { ctSelRev("#tbSteveInv") });
+        $("#btnCtSBRev").bind("click", function () { ctSelRev("#tbBillyInv") });
+    });
+
+    //全选
+    function ctSelAll(Inv) {
+        $(Inv + " input[type=checkbox]:not(checked)").each(function () {
+            $(this).attr("checked", true);
+        });
+    }
+
+    //不选
+    function ctSelNone(Inv) {
+        $(Inv + " input[type=checkbox]:checked").each(function () {
+            $(this).attr("checked", false);
+        });
+    }
+
+    //反选
+    function ctSelRev(Inv) {
+        $(Inv + " input[type=checkbox]").each(function () {
+            $(this).attr("checked", !$(this).attr("checked"));
+        });
+
+    }
+
+    /*节点替换与包裹演示*/
+    //标题爆炸
+    $(function () {
+        $("#btnHeaderBoom").click(function () {
+            var Headertxt = $("#pHeader").html();
+            $("#pHeader").replaceWith("<p style='font-size: 66px;'>" + Headertxt + "</p>");
+            $("header p").wrap("<div style='border-color:red; border-style:solid; border-width:5px'></div>")
+        });
+    });
+
+    /*样式过滤器操作示例*/
+
+    //切换主题
+    $(function () {
+        $("#btnTgStyle").click(function () {
+            switch ($("#SltTgStyle option:selected").val()) {
+                case "Gray":
+                    $(document.body).toggleClass("bodyGray");
+                    break;
+                case "Green":
+                    $(document.body).toggleClass("bodyGreen");
+                    break;
+                case "Red":
+                    $(document.body).toggleClass("bodyRed");
+                    break;
+                default:
+                    $(document.body).toggleClass("bodyDefault");
+                    break;
+            }
+
+        });
+    });
+
+    //表格高亮显示
+    $(function () {
+        $("#tbWishList td").mouseenter(function () {
+            $(this).addClass("tdWLSel");
+        });
+        $("#tbWishList td").mouseout(function () {
+            $(this).removeClass("tdWLSel");
+        });
+    });
+
+    /*RadioButton 操作演示- B社出品*/
+    $(function () {
+        $("#btnGameSel2Submit").click(function () {
+            if ($("#divGameSel2 input[name=rbGameSel2]:checked").val() == "Division") {
+                alert("非常抱歉您答！对！了！祝贺您获得成就：B社脑残粉！");
+            }
+            else {
+                alert("恭喜您答！错！了！请不要灰心，继续努力！");
+            }
+        });
+        $("#btnGameSel2Cheat").click(function () {
+            alert("E^$^%^$%#%&*()((&^%$%%^&*()*&*^%$##$$%%^&已成功定位到正确答案！");
+            $("#divGameSel2 input[name=rbGameSel2]").val(["Division"]);
+        });
+    });
+    
+    //注意：val里面必须加中括号，不能省略！
+
+    /*CheckBox 操作演示- 节操碧出品*/
+    var gameSelAns = ["ACSyndicate", "RainbowSix", "Division"];
+    var GSStatus = 1;
+    $(function () {
+        $("#btnGameSelSubmit").click(function () {
+            if ($("#divGameSel input[name=ckGameSel]:checked").length != 3) {
+                alert("恭喜您答！错！了！请不要灰心，继续努力！");
+            }
+            else {
+                $("#divGameSel input[name=ckGameSel]:checked").each(function () {
+                    if ($.inArray($(this).val(), gameSelAns) < 0) {
+                        GSStatus = 0;
+                    }
+                });
+                if (GSStatus == 1) {
+                    alert("非常抱歉您答！对！了！愿您在节操碧的道路上越走越远！");
+                }
+                else {
+                    alert("恭喜您答！错！了！请不要灰心，继续努力！");
+                }
+            }
+        });
+        $("#btnGameSelCheat").click(function () {
+            $("#divGameSel input[name=ckGameSel]").val(["ACSyndicate", "RainbowSix", "Division"]);
+            alert("E^$^%^$%#%%$%$%$%%^&%%^&%$%%^&$%$%%^%^*$%^&$&&$%$%%^&##$$%%^&已成功定位到正确答案！");
+            GSckSync();
+        });
+    });
+
+    /*      事件冒泡    */
+    //冒泡顺序就是DOM的冒泡顺序。
+    //获取事件信息(类似window.event)，只需给响应的匿名函数加上参数e（%$^^$%#$.click(function(e){blablabla})）
+    //和DOM一样可以阻止事件冒泡：e.stopPropagation()
+
+    /*   尝试访问一次OpenGIS【JQuery版】   */
+    $(function () {
+        $("#aOpenGIS").click(function (e) {
+            alert("访问失败，请勿重试！");
+            e.preventDefault();
+        });
+    });
+
+    //bind绑定事件，one绑定一次性事件
+
+    /*   动态注释层演示【JQuery方式】   */
+    $(function () {
+        $("#imgArt").mouseenter(function () {
+            var newdiv = $("<div class='divToolTip'></div>");
+            newdiv.css("top", (event.clientY + 5) + "px").css("left", (event.clientX + 5) + "px")
+                .html("龙裔十字魂的头像");
+            $(document.body).append(newdiv);
+        })
+        .mouseleave(function () {
+            $("div.divToolTip").remove();
+        });
+        
+
+    });
+
+    /*   打开图片集【JQuery方式】   */
+    $(function () {
+        $("#btnOpenGallery").click(function () {
+            $("#divGallery").toggle("slow");
+        });
+        //点击按钮就加载数据
+		$.each(galData, function (key, value) {
+            var thumbnail = $("<img />");
+            //设定小图片属性 4,5
+            thumbnail.attr("src", value[0]).attr("width", 128).attr("height", 128).attr("wcTitle", value[1]).attr("wcDesc", value[2]).attr("wcFullImg", value[3]).attr("wcWidth", value[4]/5).attr("wcHeight", value[5]/5)
+            .mouseenter(function (e) {
+                //设定动态层样式
+                var newdiv = $("<div class='divGalDetail' style='position:absolute;height:400px;border-style:solid;border-color:red;border-width:5px;background-color:rgba(0, 232, 255, 0.76)'></div>");
+                newdiv.css("top", (e.pageY + 5) + "px").css("left", (e.pageX + 5) + "px").css("width", parseInt($(this).attr("wcWidth"), 10) + 20 + "px");
+                //挂载
+                newdiv.html("<img class='imgGal' src=' " + $(this).attr("wcFullImg") + " ' width='" + $(this).attr("wcWidth") + "' height='" + $(this).attr("wcHeight") + "' />" + "<br />" + "<h4>" + $(this).attr("wctitle") + "</h4>" + $(this).attr("wcdesc"));
+                $(document.body).append(newdiv);
+            })
+            .mouseout(function () {
+                $("div.divGalDetail").remove();
+            });
+            $("#divGallery").append(thumbnail);			
+		});
+		
+    });
+
+    /*  好友列表示例   */
+
+    //打开好友列表
+    $(function () {
+        $("#btnOpenFriendsList").click(function () {
+            $("#divFriendsPanel").toggle();
+        });
+    });
+    
+    //列表伸缩
+    $(function () {
+        $(".divGroupTitle .btnFLUnfold").click(function () {
+            
+            var tgul = $(this).parent().next("ul");
+            if (tgul.css("display") == "block"){
+                $(this).val("+");
+            }
+            else {
+                $(this).val("-");
+            }
+            tgul.toggle();
+        });
+    });
+
+    //Cookie里面的参数还有expires, path, domain, secure等。
+    //如果不设expire，当浏览器关闭时Cookie会被立即清除。
+
+    /*      登录窗口        */
+
+    //点到模态对话框界外
+    $(function () {
+        $("#divModelBG").click(function () {
+            LQCloseWin();
+        });
+    });
+
+    //点击登录按钮
+    $(function () {
+        $("#btnLogin").click(function () {
+            $("#divModelBG").show();
+            $("#divLoginQues").show();
+            if ($.cookie("UserName")) {
+                $("#txtLGUsername").val($.cookie("UserName"));
+            }
+        });
+    });
+
+
+    //接受Cookie
+    $(function () {
+        $("#btnLQYes").click(function () {
+            //$("#divModelBG").hide();
+            $("#divLoginQues").hide();
+            $("#divLoginBox").show();
+        });
+    });
+
+    //拒绝Cookie
+    $(function () {
+        $("#btnLQNo").click(function () {
+            LQCloseWin();
+        });
+
+        $("#divLoginQues input:first").click(function () {
+            LQCloseWin();
+        });
+    });
+
+    function LQCloseWin() {
+        $("#divModelBG").hide();
+        $("#divLoginQues").hide();
+        $("#divLoginBox").hide();
+    }
+
+    //登录窗体的事件
+  
+    $(function () {
+         //点击关闭按钮
+        $("#divLoginBox input:first").click(function () {
+            LQCloseWin();
+        });
+        $("#btnLGLogin").click(function () {
+            //登录过程后续补上
+            //记住用户名的效果实现
+            if ($("#ckbLGRemember").is(":checked")) {
+                $.cookie("UserName", $("#txtLGUsername").val())
+            }
+            LQCloseWin();
+            alert("登录成功");
+            //清空之前填写的信息
+            $("#txtLGUsername").val("");
+            $("#psdLG").val("");
+
+        });
+    });
+
+    /*      JQuery UI初试        */
+    $(function () {
+        $("#divLoginBox").draggable();
+        $("#divLoginQues").draggable();
+        $("#divFriendsPanel").draggable();
+        $("#divGallery").draggable();
+        $("#divContainer").draggable();
+    });
+</script>
+</head>
+
+<body class="bodyDefault">
+<header>
+	<p id="pHeader" style="text-align: center; font-family: Gotham, 'Helvetica Neue', Helvetica, Arial, sans-serif; font-weight: bolder; font-size: 36px;">wc World 5 JQ</p>
+    
+</header>
+<nav>
+    <input type="button" id="btnGo1" value="To wc World 3" onclick="window.open('wc World 3.html')"/>
+	<input type="button" value="To wc world 4 JS-2" onClick="window.open('wc World 4 JS-2.html')" />
+    <input type="button" id="btnLogin" value="登录" />
+</nav>
+<main>
+	<aside>
+
+        <div>
+            <p>按钮事件绑定演示</p>
+            <input type="button" id="btn1" value="点我啊" />
+        </div>
+        <hr />
+        <div id="divRatingSec" style="text-align: center; margin-right: 50%;">
+            <span>JQuery版评分控件：</span>
+        	<table id="tbRating" style="text-align:center; float:right">
+                <tbody style="text-align:center">
+                    <tr>
+                        <td>☆</td>
+                        <td>☆</td>
+                        <td>☆</td>
+                        <td>☆</td>
+                        <td>☆</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+        <br />
+        <hr />
+        <div id="divGameSel">
+        	<p>链式编程-each, checkbox操作演示</p>
+            <div>
+            <p>下列游戏中，由节操碧出品的有：</p>
+            	<input type="checkbox" name="ckGameSel" value="Witcher 3"/><label>昆特牌3</label>
+                <input type="checkbox" name="ckGameSel" value="ACSyndicate"/><label>枭雄</label>
+                <input type="checkbox" name="ckGameSel" value="Fallout4"/><label>捡垃圾4</label>
+                <input type="checkbox" name="ckGameSel" value="RainbowSix"/><label>彩虹6号</label>
+                <input type="checkbox" name="ckGameSel" value="WatchCat"/><label>看门喵</label>
+                <input type="checkbox" name="ckGameSel" value="Division"/><label>全境疯缩</label>
+            </div>
+            <p>您的选择：</p><span id="spGameSelRes">还没选</span>
+            <div>
+            	<input type="button" id="btnGameSelSubmit" value="选对了吗？" />
+                <input type="button" id="btnGameSelCheat" value="我要作弊！" />
+            </div> 
+            
+        </div>
+        <hr />
+        <div>
+            <span>节点替换与包裹演示</span>
+            <input type="button" id="btnHeaderBoom" value="标题爆炸" />
+        </div>
+        <hr />
+        <div id="divGameSel2">
+        	<p>RadioButton操作演示</p>
+            <div>
+            <p>下列游戏中，不是由做老滚的那个公司发行的是：</p>
+				<input type="radio" name="rbGameSel2" value="Fallout" checked="checked" /><label>捡垃圾</label>
+             	<input type="radio" name="rbGameSel2" value="Division" /><label>全境轰锁</label>
+        	    <input type="radio" name="rbGameSel2" value="Wolfenstein" /><label>德军儿总部</label>
+         	    <input type="radio" name="rbGameSel2" value="Dishonored" /><label>敌视翁讷德</label>
+            </div>
+            <div>
+            	<input type="button" id="btnGameSel2Submit" value="选对了吗？" />
+                <input type="button" id="btnGameSel2Cheat" value="我要作弊！" />
+            </div>     	
+        </div>
+        
+
+	</aside>
+    <article>
+        <div style="float: right; clear:left; height: 256px; width: 256px; text-align: center; margin: 5%;">
+            <img id="imgArt" src="pic/thumbnail/MtG-IlustracionesEpic.jpg" title="动态注释层演示【JQuery方式】" style="width:256px;height:256px" />
+        </div>
+        <div>
+            <input type="button" id="btnCKID" value="检查id是否存在" onclick="sysCheckObjID()" />
+        </div>
+        <div>
+        	<span>JQuery选择过滤器与相对选择器示例</span>
+            <div id="divWishListHolder" style="text-align:center">
+                <table id="tbWishList" style="width:409px; height:235px;text-align:center; float:right;border-color:rgba(104, 157, 221, 0.6)">
+                  <caption>
+                    wc的愿望单
+                  </caption>
+                  <tbody style="border-width:1px;">
+                    <tr style="background-color:#0088DF">
+                      <td>游戏名称</td>
+                      <td>加入时间</td>
+                      <td>金额</td>
+                    </tr>
+                    <tr>
+                      <td>Fallout 4</td>
+                      <td>2015-6-4</td>
+                      <td>￥199</td>
+                    </tr>
+                    <tr>
+                      <td>Sword Coast Legends</td>
+                      <td>2015-6-16</td>
+                      <td>￥68</td>
+                    </tr>
+                    <tr>
+                      <td>The Wicher 3: Wild Hunt</td>
+                      <td>2014-10-8</td>
+                      <td>￥158</td>
+                    </tr>
+                    <tr>
+                      <td>Dragon's Dogma: Dark Arisen</td>
+                      <td>2016-1-5</td>
+                      <td>￥192</td>
+                    </tr>
+                    <tr>
+                      <td>Far Cry Primal</td>
+                      <td>2015-12-5</td>
+                      <td>￥248</td>
+                    </tr>
+                    <tr class="trWLLast" style="background-color:#0088DF">
+                      <td colspan="2">总计</td>
+                      <td>￥865</td>
+                    </tr>
+                  </tbody>
+        		</table>
+          </div>
+        </div> 
+        <br />
+        <hr />
+        <div>
+        	<input type="button" id="btnOpenFOCont" value="打开辐射箱子【JQuery方式】" />
+            <input type="button" id="btnOpenGallery" value="打开图片集【JQuery方式】" />
+            <input type="button" id="btnOpenFriendsList" value="打开好友列表" />
+        </div>
+        <div>尝试访问一次OpenGIS【JQuery方式】
+            <br />
+            <a id="aOpenGIS" href="www.opengis.com.cn">尝试访问一次OpenGIS【JQuery方式】</a>
+        </div>
+        <hr />
+        <div>
+            [无效！！！]
+            <select id="SltTgStyle">
+                <option value="Default">请选择一种样式</option>
+                <option value="Gray">哀悼日</option>
+                <option value="Green">绿绿绿</option>
+                <option value="Red">新年红</option>
+            </select>
+            <input type="button" id="btnTgStyle" value="切换主题" />
+        </div>
+        <hr />
+    </article>
+    
+        <div id="divContainer">
+        	<div style="width:100%; height:25px">
+                <input type="button" class="btnWinClose" value="X" />
+            </div>
+
+            <div style="width: 43%; float: left; height: 400px; border-color: #0AFF00; border-style: solid; color: #0AFF00; text-align: center;">
+            <div><span class="spCTName">Steve</span></div>
+            <div id="divSteveInv" style="text-align:left">
+                <table id="tbSteveInv">
+                    <tr><td><input type="checkbox" name="Scrap Metal"/> <label>废金属</label></td></tr>
+                    <tr><td><input type="checkbox" name="BB Gun"/> <label>BB 枪</label></td></tr>
+                    <tr><td><input type="checkbox" name="T-60b Power Armor"/> <label>T-60b 动力甲</label></td></tr>
+                </table>            
+            </div>
+
+            </div>
+            <div style="width: 8%; height: 30%; float: left; margin-left: 20px; margin-right: 21px; margin-top: 90px; border-color: #0AFF00; border-style: solid; text-align: center; margin-bottom: 150px;">
+            	<div class="divCtBtnSec">
+                	<input id="btnCtS2BAll" type="button" value=">>" />
+                </div>
+				<div class="divCtBtnSec">
+                	<input id="btnCtS2B" type="button" value=">" />
+                </div>
+				<div class="divCtBtnSec">
+                	<input id="btnCtB2S" type="button" value="<" />
+                </div>
+				<div class="divCtBtnSec">
+                	<input id="btnCtB2SAll" type="button" value="<<" />
+                </div>
+            	
+            </div>
+            <div style="width: 43%; height: 400px; float: right; border: medium solid #0AFF00; color: #0AFF00;">
+                <div><span class="spCTName">Billy</span></div>
+                <div id="divBillyInv" style="text-align:left">
+                    <table id="tbBillyInv">
+                        <tr><td><input type="checkbox" name="Purified Water"/> <label>纯净水</label></td></tr>
+                        <tr><td><input type="checkbox" name="Stimpack"/> <label>治疗针</label></td></tr>
+                        <tr><td><input type="checkbox" name="RadAway"/> <label>辐特宁</label></td></tr>
+                    </table>            
+                </div>
+
+            </div>
+			<div style="float: left; clear: left; width: 44%; margin-right: 87px;">
+            	<input type="button" id="btnCtSSAll" value="全选" />
+                <input type="button" id="btnCtSSNone" value="不选" />
+                <input type="button" id="btnCtSSRev" value="反选" />
+            </div>            
+			<div style="float: right; clear: right; width: 44%; margin-left: 41px;">
+            	<input type="button" id="btnCtSBAll" value="全选" />
+                <input type="button" id="btnCtSBNone" value="不选" />
+                <input type="button" id="btnCtSBRev" value="反选" />                
+            </div>
+            <div style="width: 94%; height: 64px; text-align: right; border-width: 8px; border-color: #000000; float: right;">
+               <img src="pic/jquery-logo.png" height="64" width="64" />
+            </div>
+            
+
+        </div>
+        <div id="divGallery" class="divWindow">
+            <div style="width:5%; float:right; clear:left">
+                <input type="button" class="btnWinClose" value="X" />
+            </div>
+            <div style="width:9%; float:left;border-color:red; border-style:solid; text-align:center">
+            	<img src="pic/jquery-logo.png" width="64" height="64" />
+            </div>
+        </div>
+        <div class="divWindow" id="divFriendsPanel">
+        	<div>
+            	<input type="button" class="btnWinClose" value="X" />
+            </div>
+            <div style="width: 248px; height:88px; clear:both;">
+            	<div style="text-align: center; width: 68px; height: 68px; margin-left: 5px; float: left; margin-top: 5px; background-color: rgba(0,28,249,1.00);">
+                	<div style="margin-top:2px">
+                	<img src="pic/thumbnail/ACU-3.jpg" width="64" height="64" />
+                    </div>
+                </div>
+                <div style="width: 160px; height: 68px; float: right; margin-top: 5px;">
+                	<div style="width: 100%; height: 33%; color: rgba(44,225,0,1.00); font-weight: bolder;"><span>你们家的WC</span></div>
+                    <div style="width: 100%; height: 33%; color: rgba(91,255,252,0.74); font-weight: bolder;"><span>在线</span></div>
+                    <div style="width:100%; height:33%;">不作死绝对不会死 吗</div>
+                </div>
+            </div>
+			<div id="divFLFriendList">
+                <div class="divGroupTitle">
+               		 <input type="button" class="btnFLUnfold" value="-" />
+                    <span class="spFLGroupName">我的小马甲</span>
+                </div>           
+            	<ul>
+                	<li>
+                    	<div class="divFLFriend">
+                            <div class="divFLFriendAvt" style="background-color:rgba(0,255,44,1.00)">
+                            	<div style="margin-top:2px">
+                        	    	<img src="pic/thumbnail/fallout-VaultBoy.jpg" width="64" height="64" />                                
+                                </div>
+                            </div>
+                            <div class="divFriendInfoBox">
+                                <div class="divFriendInfo">小白直膝箭</div>
+                                <div class="divFriendInfo"><span style="color: rgba(0,255,44,1.00); font-weight: bold;">玩儿high了</span></div>
+                                <div class="divFriendInfo"><span style="color: rgba(0,255,44,1.00); font-weight: 500;">正玩：捡垃圾</span></div>
+                            </div>
+                        </div>
+                    </li>
+                	<li>
+                    	<div class="divFLFriend">
+                            <div class="divFLFriendAvt" style="background-color:rgba(161,0,255,1.00)">
+                            	<div style="margin-top:2px">
+                            		<img src="pic/thumbnail/TES-Dragonborn_2.jpg" width="64" height="64" />
+                                </div>
+                            </div>
+                            <div class="divFriendInfoBox">
+                                <div class="divFriendInfo">原型抓根宝</div>
+                                <div class="divFriendInfo"><span style="color: rgba(184,91,255,1.00); font-weight: bold;">超想玩游戏</span></div>
+                                <div class="divFriendInfo">Fus!</div>
+                            </div>
+                        </div>
+                    </li>                                        
+                </ul>
+                <div class="divGroupTitle">
+            	    <input type="button" class="btnFLUnfold" value="-" />
+                    <span class="spFLGroupName">我的好基友</span>
+                </div>                 
+            	<ul>
+                	<li>
+                    	<div class="divFLFriend">
+                            <div class="divFLFriendAvt" style="background-color:rgba(222,228,0,1.00)">
+                           		 <div style="margin-top:2px">
+                           			<img src="pic/thumbnail/SC2-1.jpg" width="64" height="64" />
+                                 </div>
+                            </div>
+                            <div class="divFriendInfoBox" style="background-color:rgba(221,199,0,1.00)">
+                                <div class="divFriendInfo">比利西迪克</div>
+                                <div class="divFriendInfo">错误Conn_Reset</div>
+                                <div class="divFriendInfo">最好玩的是自己</div>
+                            </div>
+                        </div>
+                    </li>
+                	<li>
+                    	<div class="divFLFriend">
+                            <div class="divFLFriendAvt" style="background-color:rgba(0,28,249,1.00)">
+                            	<div style="margin-top:2px">
+                            		<img src="pic/thumbnail/MB-1.jpg" width="64" height="64" />
+                                </div>
+                            </div>
+                            <div class="divFriendInfoBox">
+                              <div class="divFriendInfo">飞刀罗多剋</div>
+                              <div class="divFriendInfo"><span style="color: rgba(91,255,252,0.74); font-weight: bolder;">在线</span></div>
+                                <div class="divFriendInfo">对付山贼快准狠</div>
+                            </div>
+                        </div>
+                    </li>                                        
+                </ul>
+                <div class="divGroupTitle">
+                	<input type="button" class="btnFLUnfold" value="-" />
+                    <span class="spFLGroupName">猪一样的队友</span>
+                </div>                 
+            	<ul>
+                	<li>
+                    	<div class="divFLFriend">
+                            <div class="divFLFriendAvt" style="background-color:rgba(255,0,0,1.00)">
+                          	  <div style="margin-top:2px">
+                            	<img src="pic/thumbnail/cc164fdf8db1cb1393e7b210df54564e93584b62.jpg" width="64" height="64" />
+                              </div>
+                            </div>
+                            <div class="divFriendInfoBox" style="background-color:rgba(255,0,0,1.00)">
+                                <div class="divFriendInfo">逗逗拉菲</div>
+                                <div class="divFriendInfo">一次在案的UAC</div>
+                                <div class="divFriendInfo"><span style="font-size: 13px">前排售属性修改器哦</span></div>
+                            </div>
+                        </div>
+                    </li>
+                	<li>
+                    	<div class="divFLFriend">
+                            <div class="divFLFriendAvt" style="background-color:rgba(134,134,134,1.00)">
+                           	 <div style="margin-top:2px">
+                            	<img src="pic/thumbnail/KZYEYE.bmp" width="64" height="64" />
+                             </div>
+                            </div>
+                            <div class="divFriendInfoBox">
+                                <div class="divFriendInfo">猪猪侠</div>
+                                <div class="divFriendInfo">离线</div>
+                                <div class="divFriendInfo">Fire in the Hole</div>
+                            </div>
+                        </div>
+                    </li>                                        
+                </ul>                                
+            </div>
+        </div>
+        <div id="divLoginBox" class="divWindow">
+            <div style="width:5%; float:right; clear:left">
+                <input type="button" class="btnWinClose" value="X" />
+            </div>
+            <div style="clear:both">
+           	  <div>
+                	<span style="">Cookie示例</span>
+              </div>
+             	<div>
+                	<span style="color: rgba(94,255,38,1.00); font-size: x-large; font-family: '微软雅黑';">欢迎来到wc World 5 JQ，请登录！</span>
+                </div>               
+           	  <div class="divLoginTextBox">
+            		<input type="text" id="txtLGUsername" placeholder="用户名" title="UserName" maxlength="30" />              
+                </div>
+            	<div class="divLoginTextBox">
+            		<input type="password" id="psdLG" placeholder="密码" title="Password" maxlength="30" />              
+                </div>
+              <div style="text-align:left">
+                	<input type="checkbox" id="ckbLGRemember" value="SaveUsername" /><label>保存用户名</label>
+                </div>
+              <div class="divLoginBtnHolder">
+                	<input type="button" id="btnLGLogin" value="登录" />
+                </div>
+            </div>
+
+        </div>
+        <div id="divLoginQues" class="divModelWindow">
+            <div style="width:5%; float:right; clear:left">
+                <input type="button" class="btnWinClose" value="X" />
+            </div>
+            <div class="divMWText">
+            	<span>您好，就跟其他很多网站一样，本网站使用了Cookie。</span>
+            </div>
+            <div style="text-align:center">
+                <input type="button" id="btnLQYes" value="OK,我造啦" style="background-color:forestgreen" />
+                <input type="button" id="btnLQNo" value="不行，就是不准" style="background-color:indianred" />
+                <input type="button" id="btnLQWhat" value="Cookie是神马东东" style="background-color:dodgerblue" onclick="window.open('http://www.aboutcookies.org/Default.aspx?page=5')" />
+            </div>
+        </div>
+
+</main>
+<footer>All Rights Reserved WC, wcxaaa</footer>
+<div id="divModelBG">
+	
+</div>
+</body>
+</html>

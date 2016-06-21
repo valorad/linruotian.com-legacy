@@ -1,0 +1,283 @@
+﻿<!doctype html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <title>wc HTML World 3- JS1&nbsp;</title>
+    <style>
+	nav
+	{
+		border:solid #FF0004 3px;
+		
+		}
+    </style>
+    <script type="text/javascript">
+        /*global vars*/
+        var gbTimerSeconds = 10;
+
+        /*What u gonna do before loading*/
+        var intTimedButton = setInterval("eleCountdown()", 1000);
+
+        /*functions*/
+        function Saybad() {
+            alert('Ah!! Do not touch my body!');
+        }
+
+        function f1() {
+            alert("F1 here");
+        }
+
+        function f2() {
+		
+            alert("F2 here");
+
+            if (confirm("是？")) {
+                alert("Yep");
+                navigate("https://www.baidu.com");
+			}
+
+			else {
+				alert("cancelled");
+				}
+        }
+
+        function TitleMarquee(){
+            var title = document.title;
+            var _1stLetter = title.charAt(0);
+            var restLetter = title.substring(1, title.length);
+            
+            document.title = restLetter + _1stLetter;
+        }
+
+        function ckControlKey() {
+            if (window.event.ctrlKey == true) {
+                alert("为啥要按Ctrl键？")
+            }
+            else {
+                alert("为啥不按Ctrl键？")
+            }
+
+        }
+
+        function sysAccessDeny() {
+            alert("访问失败，请勿重试2。");
+            window.event.returnValue = false;
+            return false;
+        }
+
+        function sysGetResollution() {
+            alert(screen.width + "×" + screen.height);
+        }
+
+        function sysCopyClipboard() {
+            alert("If the Browser asks you for permission, please allow");
+            clipboardData.setData("Text", "HTML awaits you!" + location.href);
+            alert("link sucessfully copied");
+        }
+
+        function eleCountdown() {
+            var btnTimed = document.getElementById("btnTimedButton");
+
+            if (btnTimed) {
+                if (gbTimerSeconds <= 0) {
+                    btnTimed.value = "你现在可以点"
+                    btnTimed.disabled = false;
+                }
+                else {
+                    btnTimed.value = gbTimerSeconds + "s后才可以点";
+                    gbTimerSeconds--;
+                }
+            }
+        }
+
+        function eleDBtn() {
+            var divDBtn = document.getElementById("divDBtn");
+            var dInput = document.createElement("input");
+
+            dInput.type = "button";
+            dInput.value = "突然冒出的按钮";
+            divDBtn.appendChild(dInput);
+        }
+
+        function eleNavLevelUP() {
+            var nav = document.getElementById("nav");
+            nav.innerHTML = "<h1 align = 'center'>Level UP!</h1>";
+        }
+
+        function eleAddTable() {
+            var data = { "度娘": "https://www.baidu.com", "谷哥哥": "https://www.google.com", "成信大": "http://www.cuit.edu.cn", "OpenGis": "http://www.opengis.com.cn" };
+            var divDTable = document.getElementById("divDTable");
+            
+            for (var key in data)
+            {
+                var value = data[key];
+                var dtr = document.createElement("tr");
+                
+                //第一列
+                var dtd1 = document.createElement("td");
+                dtd1.innerText = key;
+                dtr.appendChild(dtd1);
+
+                //第二列
+                var dtd2 = document.createElement("td");
+
+                //dtd2.innerHTML = value;//这种链接点不动
+                dtd2.innerHTML = "<a href = '" + value + "'>" + value + "</a>"
+                dtr.appendChild(dtd2);
+                
+                //这一行写完了，把它附加到div里面
+                divDTable.appendChild(dtr);
+            }
+
+        }
+
+        function eleAddComment() {
+            var nickname = document.getElementById("txtNickname");
+            var comment = document.getElementById("txtaComment");
+
+            NewRow = document.createElement("tr");
+            NewNickname = document.createElement("td");
+            NewComment = document.createElement("td");
+
+            NewNickname.innerHTML = nickname.value;
+            NewComment.innerHTML = comment.value;
+
+            NewRow.appendChild(NewNickname);
+            NewRow.appendChild(NewComment);
+
+            tableComment.tBodies[0].appendChild(NewRow);
+
+            //alert(nickname.value);
+            //alert(comment.value);
+        }
+
+        /*
+        function person(name, age) {
+            this.Name = name;
+            this.Age = age;
+            this.Sayhello = function () { alert(this.Name); };
+        }
+
+        var per1 = new person("Dad", 45);
+        per1.Sayhello();
+        */
+
+        /*
+        var i;
+
+        var Names = new Array();
+        Names[0] = 'Tom';
+        Names[1] = 'Jerry';
+        Names[2] = 'Lilly';
+
+        for (i = 0; i < Names.length; i++) {
+            alert(Names[i]);
+        }
+
+
+        var max = 0;
+        var nums = new Array();
+
+        function getMax(Array) {
+            var i;
+
+            for (i = 0; i < nums.length; i++) {
+                if (max < nums[i]) {
+                    max = nums[i];
+                }
+            }
+            alert("The Max Number is " + max);
+        }
+
+        nums[0] = 234;
+        nums[1] = 888;
+        nums[2] = 335;
+        nums[3] = 358;
+        nums[4] = 684;
+
+        getMax(nums);
+*/
+        
+
+    </script>
+
+</head>
+
+<!--<body onbeforeunload="window.event.returnValue=('X_X');">-->
+<body>
+    <header>good trying 2- body header</header>
+    <hr />
+    <p>body text</p>
+
+    <input name="1" type="button" value="F1" onclick="document.ondblclick = f1">
+    <input name="2" type="button" value="F2" onclick="document.ondblclick = f2">
+    <input name="3" type="button" value="StartTitleMarquee" onclick="setInterval('TitleMarquee();',200)" />
+    <input name="CtrlChk" type="button" value="Ctrl检测" onclick="ckControlKey()" />
+    <input name="ResolutionCheck" type="button" value="分辨率检测" onclick="sysGetResollution()"><br>
+    <input name="Clipboard" type="button" value="粘贴本页网址到剪切板" onclick="sysCopyClipboard()" />
+    <input id="btnTimedButton" type="button" value="定时按钮" disabled="disabled" />
+    <input id="btnAddDbtn" type="button" value="动态按钮" onclick="eleDBtn()" />
+    <input id="btnAddDtable" type="button" value="动态增加表格" onclick="eleAddTable()" />
+    <input id="btnUpNav" type="button" value="升级nav" onclick="eleNavLevelUP()" />
+
+    <br/>
+
+    <a href="http://www.baidu.com" onclick="sysAccessDeny()">尝试一次访问opengis</a>
+    <div id="divDBtn" style="clear:both;">
+        A Div to input DBtns
+    </div>
+
+    <div id="divDTable" style="clear:both;">
+        A Div to add DTables
+    </div>
+
+    <nav id="nav">
+      <p align="center"><strong>Here it is NAV</strong></p>
+      <h1 align="center" id="txtNavh1">I' ve got a whole bunch of stuff to learn about.</h1>
+      <p align="center">Just Keep going</p>
+      <p align="center">&nbsp;</p>
+    </nav>
+    <section>
+      <p style="font-family: Gotham, 'Helvetica Neue', Helvetica, Arial, sans-serif; font-style: normal; font-weight: 800; font-size: x-large;">yeah that right. -BODY SECTION</p>
+      <p align="center" style="font-family: '微软雅黑'; font-weight: bolder; font-size: 36px;">评论灌水卖萌吐槽撕逼大区</p>
+        <div id="divCommentTBHolder">
+            <table id="tableComment" border="1" align="center">
+                <thead>
+                    <tr>
+                        <td width="118" align="center" style="font-family: '微软雅黑'">昵称</td>
+                        <td width="828" align="center" style="font-family: '微软雅黑'">评论</td>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr align="center">
+                        <td>尖大角</td>
+                        <td>这个网页好烂哦</td>
+                    </tr>
+                </tbody>
+            </table>
+            <br />
+            <br />
+        </div>
+        <div id="divCommentSubmitHolder">
+        	<form>
+                <input type="text" id="txtNickname" width="50" placeholder="请输入您的昵称" maxlength="20" />
+   	 		  <table height="194">
+        	    	<thead></thead>
+          	      <tbody>
+          		      	<tr>
+            	        	<td width="134" height="188">大图片</td>
+             	           <td width="1128">
+             		           	<textarea id="txtaComment" cols="150" rows="10" maxlength="140" placeholder="吐槽的话" title="评论"></textarea>
+                                <div id="divCommentButtonHolder" align="right">
+                                	<input type="button" id="btnCommentSubmit" title="发送" value="吐槽" onclick="eleAddComment()"/>
+                                </div>
+            	           </td>
+           	         </tr>
+         	       </tbody>
+     	       </table>
+               
+           </form>
+        </div>
+    </section>
+    <footer>done- FOOTER</footer>
+</body>
+</html>
