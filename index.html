@@ -6,16 +6,28 @@
 <link rel="stylesheet" href="HTML WC world/css/bootstrap.min.css" />
 <link rel="stylesheet" href="HTML WC world/css/bootstrap-theme.min.css" />
 <script src="HTML WC world/js/jquery-2.2.0.js" ></script>
+<style type="text/css">
+	.transparent_class {   
+      filter:alpha(opacity=50);   
+      -moz-opacity:0.5;   
+      -khtml-opacity: 0.5;   
+      opacity: 0.5;
+}
+    .lrtCarTitle {
+    	background-color: rgba(0,0,0,0.5);
+    }
+
+</style>
 </head>
 
 <body>
 	<header class="container">
 		<div class="row">
-			<div class="col-md-6 col-md-push-6">
-				<img class="img-circle center-block img-responsive" src="HTML WC world/pic/thumbnail/SC2-1.jpg" style="height: 50%; width: 50%" alt="Avatar Billy">
+			<div class="col-md-6 col-md-push-6" style="margin: 0 auto">
+				<img class="img-circle center-block img-responsive" src="HTML WC world/pic/thumbnail/SC2-1.jpg" style="height: 256px; width: 256px" alt="Avatar Billy">
 			</div>	
-			<div class="col-md-6 col-md-pull-6">
-				<h1>
+			<div class="col-md-6 col-md-pull-6" style="margin: 0 auto; text-align:center">
+				<h1 style="    margin-top: 90px;    margin-bottom: 45px;">
 					Welcome to linruotian ! <br />
 					<small>A vault full of <mark>BDKs</mark></small>
 				</h1>
@@ -45,21 +57,44 @@
 					<ol class="carousel-indicators">
 						<li data-target="#wcSlider" data-slide-to="0" class="active"></li>
 						<li data-target="#wcSlider" data-slide-to="1"></li>
+						<li data-target="#wcSlider" data-slide-to="2"></li>
+						<li data-target="#wcSlider" data-slide-to="3"></li>
 					</ol>
 					<!-- Wrappers for slides -->
 					<div class="carousel-inner" role="listbox">
 						<div class="item active">
-							<img src="Pic/GroupGDH.jpg" alt="We are Gaoduanhei!">
+							<a href="https://www.facebook.com/groups/737083126434856/" target="_blank">
+								<img src="Pic/GroupGDH.jpg" alt="We are Gaoduanhei!">
+							</a>
 							<div class="carousel-caption">
-								<h1>We are Gaoduanhei!</h1>
+								<h1 class="lrtCarTitle">We are Gaoduanhei!</h1>
+							</div>
+
+						</div>							
+						<div class="item">
+							<a href="https://github.com/wcxaaa/linruotian.com" target="_blank">
+								<img src="Pic/githubsrc.png" alt="Checkout on github!">								
+							</a>
+							<div class="carousel-caption">
+								<h1 class="lrtCarTitle">Check it out on github!</h1>
 							</div>
 						</div>
 						<div class="item">
-							<img src="Pic/githubsrc.png" alt="Checkout on github!">
+							<a href="http://123.206.49.214/" target="_blank">
+								<img src="Pic/wcNexusPos.png" alt="wcNexus coming soon!">								
+							</a>
 							<div class="carousel-caption">
-								<h1>Check it out on github!</h1>
+								<h1 class="lrtCarTitle">wcNexus coming soon!</h1>
 							</div>
-						</div>
+						</div>	
+						<div class="item">
+							<a href="mapFO4.html" target="_blank">
+								<img src="Pic/FO4Map.png" alt="Fallout 4 map">								
+							</a>
+							<div class="carousel-caption">
+								<h1 class="lrtCarTitle">Fallout 4 map from Wikia</h1>
+							</div>
+						</div>											
 					</div>
 
 					<!-- controls or next&prev buttons -->
@@ -84,8 +119,11 @@
 					</thead>			
 					<tbody>
 						<tr>
-							<td><a href="/HTML WC world/index.html">wc 5 JQ</a></td> <td>★★★★★</td>
+							<td><a href="HTML WC world/index.html">wc 5 JQ</a></td> <td>★★★★★</td>
 						</tr>
+						<tr>
+							<td><a href="mapFO4.html">mapFO4</a></td> <td>★★</td>
+						</tr>						
 					</tbody>
 				</table>
 			</div>
