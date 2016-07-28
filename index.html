@@ -6,7 +6,15 @@
 <link rel="stylesheet" href="HTML WC world/css/bootstrap.min.css" />
 <link rel="stylesheet" href="HTML WC world/css/bootstrap-theme.min.css" />
 <link rel="stylesheet" href="css/lrtHP.css" />
-<script src="HTML WC world/js/jquery-2.2.0.js" ></script>
+<script src="js/jquery-2.2.0.min.js" ></script>
+<script src="js/jquery.countdown.min.js"></script>
+<script type="text/javascript">
+	$(function() {
+		$('#divWin10CD').countdown('2016/07/29', function(event) {
+	    $("#divWin10CD").html(event.strftime('%w weeks %d days %H:%M:%S'));
+	  });
+	})
+</script>
 <style type="text/css">
 	.transparent_class {   
       filter:alpha(opacity=50);   
@@ -22,6 +30,12 @@
 </head>
 
 <body>
+<div class="testtt">
+	
+	<script type="text/javascript">
+
+	</script>	
+</div>
 	<nav class="navbar navbar-default">
 		<div class="container-fluid">
 			<div class="navbar-header">
@@ -85,7 +99,17 @@
 			<blockquote>
 				No! Billy will never give you a single BDK!
 				<footer>Billy the infamous</footer>
-			</blockquote>
+			</blockquote>			
+		</div>
+		<div class="row">
+			<div class="col-md-2"></div>
+			<div class="col-md-8">
+				<blockquote class="bg-warning">
+					<div style="text-align:center;"><a href="http://www.microsoft.com/zh-cn/windows/windows-10-upgrade" target="_blank"><img class="img img-responsive" src="Pic/windows.png" style="height:190px;margin:0px auto;"></a></div>
+					<div id="divWin10CD" style="font-size: 44px;"></div>
+					<footer style="font-size: 30px">Upgrade now or NEVER!</footer>
+				</blockquote>				
+			</div>
 		</div>
 
 		<div class="row">
